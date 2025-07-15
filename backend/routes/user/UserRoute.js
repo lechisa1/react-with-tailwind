@@ -1,0 +1,10 @@
+const express=require('express');
+const router=express.Router();
+const UserController=require('../../controller/user/UserController');
+const { authenticateToken } =require('../../middleware/loginMiddleware');
+router.post('/register',authenticateToken, UserController.registerUser);
+router.get('/',authenticateToken, UserController.getAllUsers);
+router.get('/user/:id', authenticateToken,UserController.getUserById);
+router.put('/:id',authenticateToken, UserController.updateUser);
+router.delete('/:id',authenticateToken,UserController.deleteUser);
+module.exports=router;
